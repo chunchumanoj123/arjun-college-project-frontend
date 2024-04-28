@@ -18,7 +18,8 @@ function Register() {
       // const body = {full_name:fullname, email, password,phone, type: role, block_id, usn, room}
       let body;
       if (role === Roles.WARDEN) {
-        body = { full_name: fullname, email, password, phone, type: role, block_id };
+        
+      //body = { full_name: fullname, email, password, phone, type: role, block_id };
       } else {
         body = { full_name: fullname, email, password, phone, type: role, block_id, usn, room };
       }
@@ -232,13 +233,13 @@ function Register() {
                       Role
                     </label>
                     <div className="flex gap-x-3 w-fit pl-2 pr-2 bg-slate-100 rounded-md text-sm">
-                     /* <button
+                      <button
                         type="button"
                         onClick={() => setRole(Roles.WARDEN)}
                         className={`rounded-md p-2 my-1 transition-all text-black ${role === Roles.WARDEN && " bg-indigo-500 text-white"}`}
                       >
                         Admin
-                      </button>*/
+                      </button>
                       <button
                         type="button"
                         onClick={() => setRole(Roles.STUDENT)}
