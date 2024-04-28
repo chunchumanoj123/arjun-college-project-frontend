@@ -21,6 +21,10 @@ function Login() {
       if (data.jwtToken) {
         localStorage.setItem("jwtToken", data.jwtToken);
         window.location = "/"
+
+        alert("Login Acess Given");
+
+  
       } else {
         alert("Invalid credentials. Please check your email and password.");
 
