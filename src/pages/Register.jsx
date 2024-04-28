@@ -32,6 +32,8 @@ function Register() {
       console.log(data);
       if (data.jwtToken) {
         window.location = "/"
+
+          alert("User Register Successfully")
       }
       else {
         alert("user already exists")
