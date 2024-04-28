@@ -62,6 +62,7 @@ function Register() {
                   <span className="flex-shrink-0 text-3xl font-black  tracking-tight opacity-100">Signup</span>
                 </a>
               </div>
+               <h1 className="flex-shrink-0 text-3xl font-black tracking-tight  text-indigo-500 no-underline hover:text-indigo-500 opacity-100">Arjun College Of Technology</h1>
 
               <h4 className="mb-2 font-medium text-gray-700 xl:text-xl">Welcome!</h4>
               <p className="mb-6 text-gray-500">Please sign-in to access your account</p>
