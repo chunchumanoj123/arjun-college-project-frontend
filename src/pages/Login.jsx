@@ -173,6 +173,8 @@ function Login() {
                 </a>
               </div>
 
+               <h1 className="flex-shrink-0 text-3xl font-black tracking-tight  text-indigo-500 no-underline hover:text-indigo-500 opacity-100">Arjun College Of Technology</h1>
+
 
 
               {/* /Logo */}
