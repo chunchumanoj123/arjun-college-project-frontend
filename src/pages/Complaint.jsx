@@ -65,6 +65,12 @@ const ComplaintForm = () => {
         console.log(response)
       }
       window.location = "/";
+
+
+      alert("Complaint  Submitted.");
+
+
+      
     } catch (err) {
       console.error(err.message);
     }
