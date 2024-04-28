@@ -52,6 +52,9 @@ const WardenComplaints = () => {
       console.log(response);
       window.location = "/"
 
+
+       alert("Complaint  Status Changed.");
+
     } catch (err) {
       console.error(err.message);
     }
