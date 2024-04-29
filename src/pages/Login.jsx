@@ -204,7 +204,7 @@ function Login() {
                       id="password"
                       className="relative block flex-auto cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow"
                       name="password"
-                      placeholder="············"
+                      placeholder="Enter Your Password"
                       onChange={(e) => setPassword(e.target.value)}
                     />
                   </div>
