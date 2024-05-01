@@ -6,43 +6,91 @@ function Register() {
   const [fullname, setFullname] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [otp, setotp] = useState("")
   const [phone, setPhone] = useState("")
   const [role, setRole] = useState(Roles.STUDENT);
   const [block_id, setBlock_id] = useState("");
   const [usn, setUsn] = useState("");
   const [room, setRoom] = useState("");
+
+  const sendOtp = async (e) => {
+    e.preventDefault()
+    if (email !== "") {
+      try {
+        const response = await fetch("https://arjun-college-project-backend.onrender.com/verify-email", {
+          method: "POST",
+          headers: { "content-type": "application/json " },
+          body: JSON.stringify({ email }),
+        });
+        console.log(response)
+        const data = await response.json();
+        console.log(data);
+        if (data) {
+          alert(data.message)
+          localStorage.setItem("complaintsOtp", data.otp)
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    } else {
+      alert("enter your email..")
+    }
+
+  }
+
+
+
+
+
+
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      // const body = {full_name:fullname, email, password,phone, type: role, block_id, usn, room}
-      let body;
-      if (role === Roles.WARDEN) {
-        body = { full_name: fullname, email, password, phone, type: role, block_id };
+    const existingOtp = localStorage.getItem("complaintsOtp")
+    if (existingOtp) {
+      if (otp === existingOtp) {
+        try {
+          // const body = {full_name:fullname, email, password,phone, type: role, block_id, usn, room}
+          let body;
+          if (role === Roles.WARDEN) {
+            body = { full_name: fullname, email, password, otp, phone, type: role, block_id };
+          } else {
+            body = { full_name: fullname, email, password, otp, phone, type: role, block_id, usn, room };
+          }
+          const response = await fetch("https://arjun-college-project-backend.onrender.com/register", {
+            method: "POST",
+            headers: { "content-type": "application/json " },
+            body: JSON.stringify(body),
+          });
+          console.log(response)
+          const data = await response.json();
+          console.log(data);
+
+          if (data.jwtToken) {
+            window.location = "/"
+
+            alert("user Register successfully")
+            localStorage.removeItem("complaintsOtp");
+          }
+          else {
+            alert("user already exists")
+            localStorage.removeItem("complaintsOtp")
+          }
+        } catch (err) {
+          console.log(err.message);
+        }
       } else {
-        body = { full_name: fullname, email, password, phone, type: role, block_id, usn, room };
+        alert("invalid otp. please check otp once.")
       }
-      const response = await fetch("https://arjun-college-project-backend.onrender.com/register", {
-        method: "POST",
-        headers: { "content-type": "application/json " },
-        body: JSON.stringify(body),
-      });
-      console.log(response)
-      const data = await response.json();
-      console.log(data);
-      if (data.jwtToken) {
-        window.location = "/"
-      }
-      else {
-        alert("user already exists")
-      }
-    } catch (err) {
-      console.log(err);
+
+    } else {
+      alert("verify your email before sign up")
     }
   }
+
   return (
     <>
-      <div className="flex min-h-screen w-full items-center justify-center text-gray-600 bg-red-100">
+      <div className="flex min-h-screen w-screen w-full items-center justify-center text-gray-600 bg-red-100">
         <div className="relative">
           <div className="hidden sm:block h-56 w-56 text-indigo-300 absolute a-z-10 -left-20 -top-20">
 
@@ -60,6 +108,7 @@ function Register() {
                   <span className="flex-shrink-0 text-3xl font-black  tracking-tight opacity-100">Signup</span>
                 </a>
               </div>
+              <h1 className="flex-shrink-0 text-3xl font-black tracking-tight  text-indigo-500 no-underline hover:text-indigo-500 opacity-100">Arjun College Of Technology</h1>
 
               <h4 className="mb-2 font-medium text-gray-700 xl:text-xl">Welcome!</h4>
               <p className="mb-6 text-gray-500">Please sign-in to access your account</p>
@@ -80,6 +129,7 @@ function Register() {
                   <div className="flex-1">
                     <label htmlFor="email" className="mb-2 inline-block text-xs font-medium uppercase text-gray-700">Email</label>
                     <input type="text" className="block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow" id="email" name="email-username" placeholder="Enter your email " autoFocus onChange={(e) => setEmail(e.target.value)} />
+                    <button onClick={sendOtp} className="bg-indigo-500 px-3 rounded mt-4 text-white font-semibold text-lg ">send otp</button>
                   </div>
 
                   <div className="flex-1">
@@ -91,8 +141,6 @@ function Register() {
                       </select>
                     </label>
                   </div>
-
-
 
                   <div className="flex-1">
                     <label htmlFor="password" className="mb-2 inline-block text-xs font-medium uppercase text-gray-700">Phone Number</label>
@@ -219,27 +267,51 @@ function Register() {
                       id="password"
                       className="relative block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow"
                       name="password"
-                      placeholder="············"
+                      placeholder="enter your password"
                       onChange={(e) => setPassword(e.target.value)}
                     />
+
+
+
+
+                    <label htmlFor="otp" className="mb-2 inline-block text-xs font-medium uppercase text-gray-700">
+                      otp
+                    </label>
+                    <input
+                      type="otp"
+                      id="otp"
+                      className="relative block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow"
+                      name="otp"
+                      placeholder="Enter Your Otp"
+                      value={otp}
+                      onChange={(e) => setotp(e.target.value)}
+                    />
+
+
+
+
+
+
+
+
 
                   </div>
                   <div className="flex-1">
                     <label htmlFor="role" className="mb-2 inline-block text-xs font-medium uppercase text-gray-700">
                       Role
                     </label>
-                    <div className="flex gap-x-3 w-fit pl-2 pr-2 bg-slate-100 rounded-md text-sm">
+                    <div className="flex gap-x-2 w-fit pl-2 pr-2 bg-slate-100 rounded-md text-sm">
                       <button
                         type="button"
                         onClick={() => setRole(Roles.WARDEN)}
-                        className={`rounded-md p-2 my-1 transition-all text-black ${role === Roles.WARDEN && " bg-indigo-500 text-white"}`}
+                        className={`rounded-md p-0 my-0  text-white ${role === Roles.WARDEN && "bg-indigo-500 "}`}
                       >
                         Admin
                       </button>
                       <button
                         type="button"
                         onClick={() => setRole(Roles.STUDENT)}
-                        className={`rounded-md p-2 my-1 transition-all text-black ${role === Roles.STUDENT && "bg-indigo-500 text-white"}`}
+                        className={`rounded-md  p-10 my-1 transition-all text-black ${role === Roles.STUDENT && "bg-indigo-500 text-white"}`}
                       >
                         Student
                       </button>
