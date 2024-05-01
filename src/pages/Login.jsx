@@ -21,6 +21,10 @@ function Login() {
       if (data.jwtToken) {
         localStorage.setItem("jwtToken", data.jwtToken);
         window.location = "/"
+
+        alert("Login Acess Given");
+
+
       } else {
         alert("Invalid credentials. Please check your email and password.");
 
@@ -169,6 +173,8 @@ function Login() {
                 </a>
               </div>
 
+              <h1 className="flex-shrink-0 text-3xl font-black tracking-tight  text-indigo-500 no-underline hover:text-indigo-500 opacity-100">Arjun College Of Technology</h1>
+
 
 
               {/* /Logo */}
@@ -198,7 +204,7 @@ function Login() {
                       id="password"
                       className="relative block flex-auto cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow"
                       name="password"
-                      placeholder="enter your password"
+                      placeholder="Enter Your Password"
                       onChange={(e) => setPassword(e.target.value)}
                     />
                   </div>
