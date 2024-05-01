@@ -304,14 +304,14 @@ function Register() {
                       <button
                         type="button"
                         onClick={() => setRole(Roles.WARDEN)}
-                        className={`rounded-md p-0 my-0  text-white ${role === Roles.WARDEN && "bg-indigo-500 "}`}
+                        className={`rounded-md p-5 my-0  text-white ${role === Roles.WARDEN && "bg-indigo-500 "}`}
                       >
                         Admin
                       </button>
                       <button
                         type="button"
                         onClick={() => setRole(Roles.STUDENT)}
-                        className={`rounded-md  p-10 my-1 transition-all text-black ${role === Roles.STUDENT && "bg-indigo-500 text-white"}`}
+                        className={`rounded-md  p-5 my-1 transition-all text-black ${role === Roles.STUDENT && "bg-indigo-500 text-white"}`}
                       >
                         Student
                       </button>
