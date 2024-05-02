@@ -303,13 +303,7 @@ function Register() {
                       Role
                     </label>
                     <div className="flex gap-x-2 w-fit pl-2 pr-2 bg-slate-100 rounded-md text-sm">
-                      <button
-                        type="button"
-                        onClick={() => setRole(Roles.WARDEN)}
-                        className={`rounded-md p-5 my-0  text-white ${role === Roles.WARDEN && "bg-indigo-500 "}`}
-                      >
-                        Admin
-                      </button>
+
                       <button
                         type="button"
                         onClick={() => setRole(Roles.STUDENT)}
