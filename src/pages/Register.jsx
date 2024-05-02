@@ -145,7 +145,7 @@ function Register() {
                   <div className="flex-1">
                     <label htmlFor="email" className="mb-2 inline-block text-xs font-medium uppercase text-gray-700">Email</label>
                     <input type="text" className="block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow" id="email" name="email-username" placeholder="Enter your email " autoFocus onChange={(e) => setEmail(e.target.value)} />
-                    <button onClick={sendOtp} className="bg-indigo-500 px-5 rounded mt-5 text-white font-semibold text-lg ">SEND OTP</button>
+                    <button onClick={sendOtp} className="bg-indigo-500 px-3 rounded mt-4 text-white font-semibold text-lg ">SEND OTP</button>
                   </div>
 
                   <div className="flex-1">
@@ -303,7 +303,13 @@ function Register() {
                       Role
                     </label>
                     <div className="flex gap-x-2 w-fit pl-2 pr-2 bg-slate-100 rounded-md text-sm">
-
+                      <button
+                        type="button"
+                        onClick={() => setRole(Roles.WARDEN)}
+                        className={`rounded-md p-5 my-0  text-white ${role === Roles.WARDEN && "bg-indigo-500 "}`}
+                      >
+                        Admin
+                      </button>
                       <button
                         type="button"
                         onClick={() => setRole(Roles.STUDENT)}
