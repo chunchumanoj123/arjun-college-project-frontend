@@ -177,6 +177,22 @@ function Register() {
                 </div>
               </div> */}
                 <div className="mb-4 flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-4">
+                  <div className="flex-1">
+                    <label htmlFor="email" className="mb-2 inline-block text-xs font-medium uppercase text-gray-700">
+                      Block ID
+                    </label>
+                    <input
+                      type="text"
+                      className={`block w-full cursor-text appearance-none rounded-md border border-gray-400 bg--100 py-2 px-3 text-sm outline-none focus:border-indigo-500 focus:bg-white focus:text-gray-600 focus:shadow ${role === Roles.WARDEN && "w-full"
+                        }`}
+                      id="email"
+                      name="email-username"
+                      placeholder="Enter your Block ID"
+                      autoFocus
+                      onChange={(e) => setBlock_id(e.target.value)}
+                    />
+                  </div>
+
 
                   {role === Roles.WARDEN ? null : (
                     <div className="flex-1">
